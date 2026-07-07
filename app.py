@@ -13,9 +13,9 @@ st.set_page_config(
 @st.cache_resource
 def load_model():
     model = XGBClassifier()
-    model.load_model("credit_default_model.json")
+    model.load_model("credit_default_model(1).json")
 
-    scaler = joblib.load("scaler(1).pkl")   # Agar file scaler(1).pkl hai to wahi naam likho
+    scaler = joblib.load("scaler(4).pkl")   # Agar file scaler(4).pkl hai to wahi naam likho
 
     return model, scaler
 
