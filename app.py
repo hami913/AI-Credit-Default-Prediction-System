@@ -254,13 +254,13 @@ with col1:
     st.markdown('<div class="glass-card"><div class="card-header">👤 Applicant Demographics & Score</div>', unsafe_allow_html=True)
     
     age = st.number_input("Age (Years)", min_value=18, max_value=100, value=30, step=1)
-    st.markdown('<div class="field-caption">💡 <b>Age:</b> Applicant ki umar years me — financial stability aur career stage estimate karti hai.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="field-caption">💡 <b>Age:</b> Applicant\'s age in years — indicates financial maturity and career stability stage.</div>', unsafe_allow_html=True)
     
     income = st.number_input("Annual Income ($)", min_value=0, max_value=2000000, value=65000, step=1000)
-    st.markdown('<div class="field-caption">💡 <b>Annual Income:</b> Applicant ki kul saalana aamdani jo loan wapas karne ki capacity batati hai.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="field-caption">💡 <b>Annual Income:</b> Total gross annual earnings indicating loan repayment capacity.</div>', unsafe_allow_html=True)
     
     credit_score = st.number_input("Credit Score (FICO)", min_value=300, max_value=850, value=710, step=1)
-    st.markdown('<div class="field-caption">💡 <b>Credit Score:</b> Borrower ki past loan repayment history aur trustworthiness ka 300-850 score.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="field-caption">💡 <b>Credit Score:</b> Borrower\'s creditworthiness rating based on past debt repayment behavior (300–850).</div>', unsafe_allow_html=True)
     
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -268,13 +268,13 @@ with col2:
     st.markdown('<div class="glass-card"><div class="card-header">💰 Loan & Obligations Profile</div>', unsafe_allow_html=True)
     
     loan_amount = st.number_input("Loan Amount Requested ($)", min_value=0, max_value=1000000, value=15000, step=500)
-    st.markdown('<div class="field-caption">💡 <b>Loan Amount:</b> Kitan qarza maanga gaya hai. Bada loan ziada risk paida karta hai.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="field-caption">💡 <b>Loan Amount:</b> Total requested principal. Higher loan amounts elevate potential default exposure.</div>', unsafe_allow_html=True)
     
     debt_to_income = st.number_input("Debt-to-Income (DTI) Ratio", min_value=0.0, max_value=1.0, value=0.25, step=0.01)
-    st.markdown('<div class="field-caption">💡 <b>DTI Ratio:</b> Monthly debts ka income se ratio. High ratio matlab banda pehle hi qarzay me daba hua hai.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="field-caption">💡 <b>DTI Ratio:</b> Portion of monthly income allocated to debt payments. High ratios signify high leverage.</div>', unsafe_allow_html=True)
     
     delinquencies = st.selectbox("Past Delinquencies", options=[0, 1, 2, 3, 4, 5], index=0)
-    st.markdown('<div class="field-caption">💡 <b>Past Delinquencies:</b> Pehle miss ya late ki gayi monthly payments ki tadad.</div>', unsafe_allow_html=True)
+    st.markdown('<div class="field-caption">💡 <b>Past Delinquencies:</b> Total count of previously missed or delayed payment occurrences.</div>', unsafe_allow_html=True)
     
     st.markdown('</div>', unsafe_allow_html=True)
 
@@ -414,24 +414,24 @@ if assess_btn:
             </div>
             """, unsafe_allow_html=True)
 
-        st.markdown('<div style="font-size: 1rem; font-weight: 700; color: #f8fafc; margin-bottom: 12px;">🔍 Risk Factors Breakdown (Default Ki Wajha)</div>', unsafe_allow_html=True)
+        st.markdown('<div style="font-size: 1rem; font-weight: 700; color: #f8fafc; margin-bottom: 12px;">🔍 Risk Factors Breakdown (Key Drivers)</div>', unsafe_allow_html=True)
         
         # Explainability Logic
         risk_factors = []
         
         if credit_score < 620:
-            risk_factors.append(f"<b>Low Credit Score ({credit_score}):</b> Score 620 se kam hone ki wajha se default risk ziada hai.")
+            risk_factors.append(f"<b>Low Credit Score ({credit_score}):</b> Score below 620 indicates significantly higher historical default risk.")
         if debt_to_income > 0.35:
-            risk_factors.append(f"<b>High DTI Ratio ({debt_to_income:.2f}):</b> Monthly income ka bada hissa qarzay chukane me ja raha hai.")
+            risk_factors.append(f"<b>High DTI Ratio ({debt_to_income:.2f}):</b> A substantial portion of monthly income is committed to existing debt service.")
         if delinquencies > 0:
-            risk_factors.append(f"<b>Past Delinquencies ({delinquencies}):</b> Pehle ki gayi payments late/miss karne ka record hai.")
+            risk_factors.append(f"<b>Past Delinquencies ({delinquencies}):</b> Prior record of delayed or missed monthly obligations.")
         if income > 0 and (loan_amount / income) > 0.4:
-            risk_factors.append(f"<b>High Loan-to-Income Ratio:</b> Requested loan amount saalana aamdani ke muqable me kafi zyada hai.")
+            risk_factors.append(f"<b>High Loan-to-Income Ratio:</b> Requested principal is disproportionately high relative to annual earnings.")
             
         if risk_factors:
             for factor in risk_factors:
                 st.markdown(f'<div class="factor-item"><span>🔴</span> <div>{factor}</div></div>', unsafe_allow_html=True)
         else:
-            st.markdown('<div class="factor-item-safe"><span>🟢</span> <div><b>Strong Financial Health:</b> Credit Score acha hai, DTI low hai, aur koi past delinquency record nahi hai.</div></div>', unsafe_allow_html=True)
+            st.markdown('<div class="factor-item-safe"><span>🟢</span> <div><b>Strong Financial Health:</b> High credit score, manageable DTI ratio, and a clean repayment history.</div></div>', unsafe_allow_html=True)
             
         st.markdown('</div>', unsafe_allow_html=True)
