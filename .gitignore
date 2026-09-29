@@ -1,0 +1,17 @@
+.venv/
+venv/
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.vscode/
+.DS_Store
+Thumbs.db
+.streamlit/secrets.toml
+.env
+.env.*
+mlruns/
+*.tmp
+*.log
+
+mlflow/

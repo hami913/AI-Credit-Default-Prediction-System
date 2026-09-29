@@ -1,0 +1,34 @@
+# Credit Risk Intelligence - "Violet Aurora" theme
+# Restart Streamlit after editing this file.
+
+[theme]
+base = "light"
+
+# Vivid violet accent: buttons, toggles, focus rings, selected tabs (white text on it = 5.7:1)
+primaryColor = "#7C3AED"
+
+# Soft lilac page canvas with pure white cards and inputs
+backgroundColor = "#F3EEFF"
+secondaryBackgroundColor = "#FFFFFF"
+
+# Deep aubergine text: ~15:1 contrast on the page background
+textColor = "#1E1236"
+
+font = "sans serif"
+
+# --- Optional, for Streamlit 1.46+ (uncomment if your version supports them) ---
+# baseRadius = "large"
+# borderColor = "#E3D8FB"
+# showWidgetBorder = true
+#
+# [theme.sidebar]
+# backgroundColor = "#160B36"
+# secondaryBackgroundColor = "#2A1257"
+# textColor = "#F1E8FF"
+# primaryColor = "#19D3C5"
+
+[client]
+toolbarMode = "minimal"
+
+[browser]
+gatherUsageStats = false
