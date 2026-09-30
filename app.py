@@ -99,6 +99,7 @@ INDIGO = "#7C3AED"
 AQUA = "#19D3C5"
 CORAL = "#FF5C7A"
 MINT = "#22C58B"
+AMBER = "#FFB020"
 INK = "#0E1330"
 
 # ============================================================
@@ -157,7 +158,7 @@ st.markdown(
         position: relative;
         overflow: hidden;
         border-radius: 30px;
-        padding: 46px 48px 40px;
+        padding: 46px 48px 42px;
         color: #FFFFFF;
         background:
             radial-gradient(34rem 20rem at 88% 8%, rgba(168,85,247,.60), transparent 65%),
@@ -236,25 +237,6 @@ st.markdown(
         line-height: 1.65;
     }
 
-    .hero-meta {
-        display: flex;
-        flex-wrap: wrap;
-        gap: .6rem;
-        margin-top: 1.5rem;
-    }
-
-    .hero-meta span {
-        display: inline-block;
-        padding: .45rem .8rem;
-        border-radius: 12px;
-        background: rgba(255,255,255,.08);
-        color: #E3E8FF;
-        font-size: .82rem;
-        font-weight: 500;
-        border: 1px solid rgba(255,255,255,.12);
-        backdrop-filter: blur(8px);
-    }
-
     /* ---------- Section headings ---------- */
     .section-wrap {
         display: flex;
@@ -319,13 +301,6 @@ st.markdown(
         color: var(--text);
     }
 
-    div[data-testid="stNumberInput"] input,
-    div[data-testid="stSelectbox"] > div > div {
-        border-radius: 12px !important;
-        border-color: var(--line) !important;
-        background: #FBFBFF !important;
-    }
-
     /* Readable labels and input text on the light form card (any Streamlit theme) */
     div[data-testid="stWidgetLabel"] p,
     div[data-testid="stWidgetLabel"] label,
@@ -335,10 +310,23 @@ st.markdown(
     }
 
     div[data-testid="stNumberInput"] div[data-baseweb="input"],
-    div[data-testid="stNumberInput"] div[data-baseweb="base-input"] {
+    div[data-testid="stNumberInput"] div[data-baseweb="base-input"],
+    div[data-testid="stNumberInput"] input,
+    div[data-testid="stSelectbox"] > div > div {
         background: #FBFBFF !important;
+        background-color: #FBFBFF !important;
         border-radius: 12px !important;
         border-color: var(--line) !important;
+    }
+
+    div[data-testid="stNumberInput"] div[data-baseweb="input"] {
+        border: 1px solid var(--line) !important;
+        overflow: hidden;
+    }
+
+    div[data-testid="stNumberInput"] input {
+        border: 0 !important;
+        box-shadow: none !important;
     }
 
     div[data-testid="stNumberInput"] input,
@@ -396,7 +384,8 @@ st.markdown(
         outline-offset: 2px;
     }
 
-    .stButton > button {
+    .stButton > button,
+    div[data-testid="stDownloadButton"] > button {
         border-radius: 12px;
         border: 1px solid var(--line);
         background: #FFFFFF;
@@ -405,7 +394,8 @@ st.markdown(
         transition: border-color .15s ease, color .15s ease;
     }
 
-    .stButton > button:hover {
+    .stButton > button:hover,
+    div[data-testid="stDownloadButton"] > button:hover {
         border-color: var(--indigo);
         color: var(--indigo);
     }
@@ -419,7 +409,6 @@ st.markdown(
         border-radius: 26px;
         padding: 28px 30px;
         box-shadow: var(--shadow-lg);
-        min-height: 320px;
         display: flex;
         flex-direction: column;
         justify-content: center;
@@ -438,6 +427,7 @@ st.markdown(
     }
 
     .result-shell.low::before {background: radial-gradient(circle, var(--mint), transparent 70%);}
+    .result-shell.mid::before {background: radial-gradient(circle, var(--amber), transparent 70%);}
     .result-shell.high::before {background: radial-gradient(circle, var(--coral), transparent 70%);}
 
     .result-top {
@@ -464,17 +454,9 @@ st.markdown(
         font-weight: 700;
     }
 
-    .result-shell.low .result-status {
-        color: #0A7A54;
-        background: #E6F8F0;
-        border: 1px solid #C4EEDB;
-    }
-
-    .result-shell.high .result-status {
-        color: #C2264A;
-        background: #FFEDF1;
-        border: 1px solid #FFCFDA;
-    }
+    .result-shell.low .result-status {color: #0A7A54; background: #E6F8F0; border: 1px solid #C4EEDB;}
+    .result-shell.mid .result-status {color: #9A6200; background: #FFF5DD; border: 1px solid #FFE2A3;}
+    .result-shell.high .result-status {color: #C2264A; background: #FFEDF1; border: 1px solid #FFCFDA;}
 
     .result-number {
         font-family: var(--font-head);
@@ -483,21 +465,14 @@ st.markdown(
         letter-spacing: -.06em;
         line-height: 1;
         margin: .7rem 0 1.1rem;
-    }
-
-    .result-shell.low .result-number {
-        background: linear-gradient(120deg, #0E9F6E, #19D3C5);
         -webkit-background-clip: text;
         background-clip: text;
         -webkit-text-fill-color: transparent;
     }
 
-    .result-shell.high .result-number {
-        background: linear-gradient(120deg, #FF5C7A, #FF8A5C);
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
-    }
+    .result-shell.low .result-number {background-image: linear-gradient(120deg, #0E9F6E, #19D3C5);}
+    .result-shell.mid .result-number {background-image: linear-gradient(120deg, #FFB020, #FF8A5C);}
+    .result-shell.high .result-number {background-image: linear-gradient(120deg, #FF5C7A, #FF8A5C);}
 
     .meter {
         position: relative;
@@ -513,6 +488,7 @@ st.markdown(
     }
 
     .result-shell.low .meter-fill {background: linear-gradient(90deg, #22C58B, #19D3C5);}
+    .result-shell.mid .meter-fill {background: linear-gradient(90deg, #FFD166, #FFB020);}
     .result-shell.high .meter-fill {background: linear-gradient(90deg, #FF8A5C, #FF5C7A);}
 
     .meter-mark {
@@ -534,12 +510,27 @@ st.markdown(
         margin-top: .55rem;
     }
 
-    .result-copy {
-        color: var(--muted);
-        font-size: .88rem;
+    .advice {
+        background: linear-gradient(120deg, #160B36, #3B1B7A);
+        color: #F1E8FF;
+        border-radius: 18px;
+        padding: 1rem 1.2rem;
+        font-size: .92rem;
         line-height: 1.6;
         margin-top: 1rem;
-        max-width: 540px;
+        box-shadow: var(--shadow-md);
+    }
+
+    .insight {
+        background: #FFFFFF;
+        border: 1px solid var(--line);
+        border-left: 4px solid var(--indigo);
+        border-radius: 14px;
+        padding: .8rem 1rem;
+        margin-bottom: .6rem;
+        font-size: .92rem;
+        color: var(--text);
+        box-shadow: var(--shadow-sm);
     }
 
     /* ---------- Metrics ---------- */
@@ -610,17 +601,6 @@ st.markdown(
         box-shadow: var(--shadow-sm);
     }
 
-    .helper-note {
-        background: linear-gradient(90deg, rgba(124,58,237,.08), rgba(25,211,197,.06));
-        border: 1px solid rgba(124,58,237,.18);
-        color: #4A5275;
-        border-radius: 14px;
-        padding: .8rem 1rem;
-        font-size: .85rem;
-        line-height: 1.55;
-        margin: .2rem 0 1rem;
-    }
-
     .footer-note {
         color: #8A91AD;
         font-size: .8rem;
@@ -651,7 +631,6 @@ st.markdown(
         }
 
         .result-shell {
-            min-height: unset;
             padding: 22px;
             border-radius: 20px;
         }
@@ -790,6 +769,59 @@ def run_assessment(customer_data: pd.DataFrame) -> Dict[str, Any]:
         "pay_to_limit": float(customer_fe["PAY_TO_LIMIT_RATIO"].iloc[0]),
     }
 
+
+def risk_band(probability: float, cutoff: float) -> Tuple[str, str]:
+    """Return (label, css_class) for a probability relative to the threshold."""
+    if probability >= cutoff:
+        return "High", "high"
+    if probability >= cutoff * 0.6:
+        return "Moderate", "mid"
+    return "Low", "low"
+
+
+def build_insights(result: Dict[str, Any]) -> List[str]:
+    """Turn the engineered metrics into plain-English takeaways."""
+    notes: List[str] = []
+
+    # Repayment behaviour
+    if result["max_delay"] >= 2:
+        notes.append(
+            f"Repayment was delayed by up to {result['max_delay']} months."
+        )
+    elif result["delayed_months"] == 0:
+        notes.append(
+            "No delayed repayments in the six-month window."
+        )
+
+    # Balance / utilization behaviour
+    if result["avg_bill"] <= 0:
+        notes.append(
+            "No outstanding statement balance was recorded in the six-month window."
+        )
+    elif result["avg_utilization"] >= 0.8:
+        notes.append(
+            f"High average utilization ({result['avg_utilization'] * 100:.0f}% of limit)."
+        )
+    elif result["avg_utilization"] <= 0.3:
+        notes.append(
+            f"Low average utilization ({result['avg_utilization'] * 100:.0f}% of limit)."
+        )
+
+    # Payment-to-bill behaviour
+    if result["avg_bill"] <= 0:
+        notes.append(
+            "Payment-to-bill ratio is not applicable because there is no outstanding balance."
+        )
+    elif result["pay_to_bill"] < 0.3:
+        notes.append(
+            f"Payments cover only {result['pay_to_bill'] * 100:.0f}% of balances on average."
+        )
+    elif result["pay_to_bill"] >= 0.8:
+        notes.append(
+            f"Payments cover {min(result['pay_to_bill'], 1) * 100:.0f}%+ of balances."
+        )
+
+    return notes
 
 def polish_chart(
     fig: go.Figure,
@@ -944,11 +976,13 @@ def utilization_chart(history_df: pd.DataFrame, limit_bal: float) -> go.Figure:
     return fig
 
 
-def risk_gauge_chart(probability: float, threshold: float) -> go.Figure:
-    """Semi-circular gauge showing the probability against the threshold."""
+def risk_gauge_chart(probability: float, cutoff: float) -> go.Figure:
+    """Large three-band gauge (low / moderate / high) with the threshold marked."""
     pct = probability * 100
-    threshold_pct = threshold * 100
-    bar_color = CORAL if probability >= threshold else MINT
+    threshold_pct = cutoff * 100
+    mid_start = threshold_pct * 0.6
+    label, _ = risk_band(probability, cutoff)
+    bar_color = {"Low": MINT, "Moderate": AMBER, "High": CORAL}[label]
 
     fig = go.Figure(
         go.Indicator(
@@ -956,38 +990,38 @@ def risk_gauge_chart(probability: float, threshold: float) -> go.Figure:
             value=pct,
             number={
                 "suffix": "%",
-                "font": {"size": 44, "color": INK, "family": "Sora, Inter, sans-serif"},
+                "font": {"size": 58, "color": INK, "family": "Sora, Inter, sans-serif"},
                 "valueformat": ".1f",
             },
             title={
-                "text": "Default probability",
-                "font": {"size": 14, "color": "#6B7391"},
+                "text": f"Default probability · <b>{label} risk</b>",
+                "font": {"size": 16, "color": "#6B7391"},
             },
             gauge={
                 "axis": {
                     "range": [0, 100],
                     "tickwidth": 0,
-                    "tickcolor": "#CBD5E1",
-                    "tickfont": {"size": 10, "color": "#8A91AD"},
+                    "tickfont": {"size": 11, "color": "#8A91AD"},
                 },
-                "bar": {"color": bar_color, "thickness": .32},
+                "bar": {"color": bar_color, "thickness": .34},
                 "bgcolor": "#EEF0FA",
                 "borderwidth": 0,
                 "steps": [
-                    {"range": [0, threshold_pct], "color": "#E6F8F0"},
+                    {"range": [0, mid_start], "color": "#E6F8F0"},
+                    {"range": [mid_start, threshold_pct], "color": "#FFF5DD"},
                     {"range": [threshold_pct, 100], "color": "#FFEDF1"},
                 ],
                 "threshold": {
-                    "line": {"color": INK, "width": 3},
-                    "thickness": .8,
+                    "line": {"color": INK, "width": 4},
+                    "thickness": .85,
                     "value": threshold_pct,
                 },
             },
         )
     )
     fig.update_layout(
-        height=320,
-        margin=dict(l=32, r=32, t=56, b=15),
+        height=380,
+        margin=dict(l=30, r=30, t=70, b=10),
         paper_bgcolor="rgba(0,0,0,0)",
         font=dict(family="Inter, Arial, sans-serif"),
     )
@@ -1090,12 +1124,6 @@ st.markdown(
             Enter a customer profile and six months of repayment behavior to estimate
             next-month default probability, with a clear explanation of what drives it.
         </p>
-        <div class="hero-meta">
-            <span>📈 Next-month risk</span>
-            <span>🗓️ 6-month payment history</span>
-            <span>🔍 Explainable prediction</span>
-            <span>🧑‍⚖️ Human-reviewed</span>
-        </div>
     </div>
     """,
     unsafe_allow_html=True,
@@ -1176,12 +1204,6 @@ with st.form("risk_assessment_form"):
         "Add the six most recent repayment statuses, statement balances, and payments.",
     )
 
-    st.markdown(
-        '<div class="helper-note"><b>Tip:</b> Positive repayment-status values '
-        "represent months of delay. Special statuses keep the dataset's original codes.</div>",
-        unsafe_allow_html=True,
-    )
-
     edited_history = st.data_editor(
         st.session_state.history_data,
         hide_index=True,
@@ -1243,6 +1265,18 @@ if submitted:
             st.write(f"- {error}")
         st.stop()
 
+    # Do not score a completely inactive / empty six-month profile.
+    no_balance_activity = all(float(x) == 0 for x in bills)
+    no_payment_activity = all(float(x) == 0 for x in payments)
+
+    if no_balance_activity and no_payment_activity:
+        st.warning("Insufficient account activity for a meaningful assessment.")
+        st.info(
+            "Enter at least one statement balance or payment from the "
+            "six-month account history before running the assessment."
+        )
+        st.stop()
+
     try:
         assessment = run_assessment(customer_data)
     except Exception as exc:
@@ -1263,7 +1297,6 @@ if "assessment" in st.session_state:
     history_for_result = st.session_state.assessment_history
     limit_for_result = st.session_state.assessment_limit
     probability = result["probability"]
-    prediction = result["prediction"]
 
     st.write("")
     section(
@@ -1274,18 +1307,29 @@ if "assessment" in st.session_state:
 
     fill_pct = min(max(probability * 100, 0.0), 100.0)
     mark_pct = min(max(threshold * 100, 0.0), 100.0)
+    level, level_class = risk_band(probability, threshold)
+    advice = {
+        "Low": "Profile looks healthy. Standard monitoring is sufficient.",
+        "Moderate": "Approaching the decision threshold. Consider a limit review and closer monitoring.",
+        "High": "Above the decision threshold. Recommend manual review before extending further credit.",
+    }[level]
 
-    summary_col, gauge_col = st.columns([1.25, .9], gap="large")
+    gauge_col, summary_col = st.columns([1.1, 1], gap="large")
+
+    with gauge_col:
+        st.plotly_chart(
+            risk_gauge_chart(probability, threshold),
+            use_container_width=True,
+            config={"displayModeBar": False},
+        )
 
     with summary_col:
         st.markdown(
             f"""
-            <div class="result-shell {'high' if prediction else 'low'}">
+            <div class="result-shell {level_class}">
                 <div class="result-top">
                     <div class="result-eyebrow">Next-month default probability</div>
-                    <div class="result-status">
-                        {'● Higher predicted risk' if prediction else '● Lower predicted risk'}
-                    </div>
+                    <div class="result-status">● {level} risk</div>
                 </div>
                 <div class="result-number">{probability * 100:.1f}%</div>
                 <div class="meter">
@@ -1297,33 +1341,46 @@ if "assessment" in st.session_state:
                     <span>Threshold {threshold * 100:.0f}%</span>
                     <span>100%</span>
                 </div>
-                <div class="result-copy">
-                    Classification is based on the saved model threshold of <b>{threshold * 100:.0f}%</b>.
-                    This prediction is decision support only and should be reviewed by a qualified person.
-                </div>
             </div>
+            <div class="advice"><b>Recommendation:</b> {advice}</div>
             """,
             unsafe_allow_html=True,
         )
 
-    with gauge_col:
-        st.plotly_chart(
-            risk_gauge_chart(probability, threshold),
-            use_container_width=True,
-            config={"displayModeBar": False},
-        )
-
     st.write("")
-    m1, m2, m3 = st.columns(3)
+    m1, m2, m3, m4 = st.columns(4)
     m1.metric("Delayed months", result["delayed_months"])
     m2.metric("Average utilization", f"{result['avg_utilization'] * 100:.1f}%")
     m3.metric("Average payment", f"{result['avg_payment']:,.0f}")
+    m4.metric("Payment / bill", ("N/A" if result["avg_bill"] <= 0 else f"{result['pay_to_bill'] * 100:.0f}%"))
 
     if result["avg_utilization"] > 1:
         st.warning(
             "Average statement balance exceeds the entered credit limit. "
             "Verify the financial values before relying on this result."
         )
+
+    st.write("")
+    section("4", "Key takeaways", "Plain-English reading of this customer's behavior.")
+    for note in build_insights(result):
+        st.markdown(f'<div class="insight">{note}</div>', unsafe_allow_html=True)
+
+    summary_csv = pd.DataFrame(
+        [{
+            "default_probability_pct": round(probability * 100, 2),
+            "risk_level": level,
+            "threshold_pct": round(threshold * 100, 1),
+            "delayed_months": result["delayed_months"],
+            "avg_utilization_pct": round(result["avg_utilization"] * 100, 1),
+            "avg_payment": round(result["avg_payment"], 0),
+        }]
+    ).to_csv(index=False)
+    st.download_button(
+        "⬇️ Download assessment summary",
+        data=summary_csv,
+        file_name="credit_risk_assessment.csv",
+        mime="text/csv",
+    )
 
     st.write("")
     trends_tab, explain_tab = st.tabs(["Payment trends", "Model explanation"])
@@ -1354,22 +1411,21 @@ if "assessment" in st.session_state:
             "SHAP values indicate which features moved this prediction up or down. "
             "They do not prove causation."
         )
-        if st.toggle("Generate SHAP explanation"):
+        with st.spinner("Computing explanation..."):
             shap_fig, shap_error = local_shap_chart(result["customer_fe"])
-            if shap_fig is not None:
-                st.plotly_chart(
-                    shap_fig,
-                    use_container_width=True,
-                    config={"displayModeBar": False},
-                )
-            else:
-                st.info(shap_error)
+        if shap_fig is not None:
+            st.plotly_chart(
+                shap_fig,
+                use_container_width=True,
+                config={"displayModeBar": False},
+            )
+        else:
+            st.info(shap_error)
 
 # ============================================================
 # FOOTER
 # ============================================================
 st.markdown(
-    '<div class="footer-note">Credit Risk Intelligence · Explainable assessment · '
-    "Human review required</div>",
+    '<div class="footer-note">Credit Risk Intelligence · Decision support only</div>',
     unsafe_allow_html=True,
 )
