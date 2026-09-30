@@ -111,70 +111,45 @@ st.markdown(
     @import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Sora:wght@600;700;800&display=swap');
 
     :root {
-        --ink: #0E1330;
-        --ink-2: #1A2150;
-        --indigo: #7C3AED;
-        --violet: #A855F7;
-        --aqua: #19D3C5;
-        --coral: #FF5C7A;
-        --mint: #22C58B;
-        --amber: #FFB020;
-        --text: #1B2140;
-        --muted: #6B7391;
-        --line: #E6E8F4;
-        --surface: #FFFFFF;
-        --bg: #F3EEFF;
-        --shadow-lg: 0 30px 70px -20px rgba(76, 29, 149, .28);
-        --shadow-md: 0 14px 34px -14px rgba(76, 29, 149, .20);
-        --shadow-sm: 0 6px 18px -10px rgba(76, 29, 149, .18);
-        --font-head: 'Sora', 'Inter', sans-serif;
-        --font-body: 'Inter', system-ui, sans-serif;
+        --ink: #0E1330; --indigo: #7C3AED; --violet: #A855F7; --aqua: #19D3C5;
+        --coral: #FF5C7A; --mint: #22C58B; --amber: #FFB020;
+        --text: #1B2140; --muted: #6B7391; --line: #E7E1F7;
+        --surface: #FFFFFF; --bg: #F5F1FF;
+        --shadow-lg: 0 40px 80px -28px rgba(76,29,149,.38);
+        --shadow-md: 0 20px 44px -20px rgba(76,29,149,.26);
+        --shadow-sm: 0 8px 22px -12px rgba(76,29,149,.22);
+        --font-head: 'Sora','Inter',sans-serif;
+        --font-body: 'Inter',system-ui,sans-serif;
     }
-
     html {scroll-behavior: smooth;}
-
-    html, body, .stApp, [class*="css"] {
-        font-family: var(--font-body);
-    }
+    html, body, .stApp, [class*="css"] {font-family: var(--font-body);}
 
     .stApp {
         background:
-            radial-gradient(60rem 28rem at 0% -5%, rgba(124,58,237,.13), transparent 60%),
-            radial-gradient(50rem 26rem at 100% 0%, rgba(25,211,197,.13), transparent 60%),
+            radial-gradient(rgba(124,58,237,.10) 1px, transparent 1px) 0 0 / 26px 26px,
+            radial-gradient(60rem 30rem at 0% -5%, rgba(124,58,237,.18), transparent 60%),
+            radial-gradient(50rem 28rem at 100% 0%, rgba(25,211,197,.16), transparent 60%),
+            radial-gradient(40rem 26rem at 50% 110%, rgba(168,85,247,.14), transparent 60%),
             var(--bg);
         color: var(--text);
     }
-
-    .block-container {
-        max-width: 1180px;
-        padding-top: 1.2rem;
-        padding-bottom: 3rem;
-    }
-
+    .block-container {max-width: 1180px; padding-top: 1.2rem; padding-bottom: 3rem;}
     #MainMenu, footer, header[data-testid="stHeader"] {visibility: hidden;}
 
     /* ---------- Hero ---------- */
     .hero {
-        position: relative;
-        overflow: hidden;
-        border-radius: 30px;
-        padding: 46px 48px 42px;
-        color: #FFFFFF;
+        position: relative; overflow: hidden; border-radius: 32px;
+        padding: 56px 52px 50px; color: #fff; isolation: isolate;
         background:
-            radial-gradient(34rem 20rem at 88% 8%, rgba(168,85,247,.60), transparent 65%),
-            radial-gradient(28rem 18rem at 70% 110%, rgba(25,211,197,.42), transparent 65%),
-            radial-gradient(24rem 16rem at 0% 100%, rgba(124,58,237,.55), transparent 65%),
-            linear-gradient(135deg, #160B36 0%, #2A1257 60%, #3B1B7A 100%);
-        box-shadow: var(--shadow-lg);
-        margin-bottom: 1.4rem;
-        isolation: isolate;
+            radial-gradient(34rem 20rem at 88% 8%, rgba(168,85,247,.65), transparent 65%),
+            radial-gradient(28rem 18rem at 70% 110%, rgba(25,211,197,.45), transparent 65%),
+            radial-gradient(24rem 16rem at 0% 100%, rgba(124,58,237,.6), transparent 65%),
+            linear-gradient(135deg, #120826 0%, #2A1257 60%, #3B1B7A 100%);
+        box-shadow: var(--shadow-lg); margin-bottom: 1.6rem;
+        border: 1px solid rgba(255,255,255,.12);
     }
-
     .hero::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        z-index: -1;
+        content: ""; position: absolute; inset: 0; z-index: -1;
         background-image:
             linear-gradient(rgba(255,255,255,.055) 1px, transparent 1px),
             linear-gradient(90deg, rgba(255,255,255,.055) 1px, transparent 1px);
@@ -182,464 +157,277 @@ st.markdown(
         mask-image: radial-gradient(ellipse at 75% 30%, #000 0%, transparent 70%);
         -webkit-mask-image: radial-gradient(ellipse at 75% 30%, #000 0%, transparent 70%);
     }
-
     .hero-badge {
-        display: inline-flex;
-        align-items: center;
-        gap: .55rem;
-        padding: .42rem .85rem;
-        border-radius: 999px;
-        background: rgba(255,255,255,.10);
-        border: 1px solid rgba(255,255,255,.18);
-        backdrop-filter: blur(10px);
-        color: #E6EBFF;
-        font-size: .8rem;
-        font-weight: 600;
-        margin-bottom: 1.1rem;
+        display: inline-flex; align-items: center; gap: .55rem;
+        padding: .45rem .95rem; border-radius: 999px;
+        background: rgba(255,255,255,.10); border: 1px solid rgba(255,255,255,.22);
+        backdrop-filter: blur(10px); color: #EDEBFF;
+        font-size: .78rem; font-weight: 600; letter-spacing: .04em;
+        text-transform: uppercase; margin-bottom: 1.3rem;
     }
-
     .hero-dot {
-        width: 8px;
-        height: 8px;
-        border-radius: 50%;
-        background: var(--aqua);
-        box-shadow: 0 0 0 0 rgba(25,211,197,.7);
-        animation: pulse 2.2s infinite;
+        width: 8px; height: 8px; border-radius: 50%; background: var(--aqua);
+        box-shadow: 0 0 0 0 rgba(25,211,197,.7); animation: pulse 2.2s infinite;
     }
-
     @keyframes pulse {
         0% {box-shadow: 0 0 0 0 rgba(25,211,197,.65);}
         70% {box-shadow: 0 0 0 10px rgba(25,211,197,0);}
         100% {box-shadow: 0 0 0 0 rgba(25,211,197,0);}
     }
-
+    @keyframes float {
+        0%,100% {transform: translateY(-50%) rotate(-6deg);}
+        50% {transform: translateY(-56%) rotate(-4deg);}
+    }
     .hero-title {
-        font-family: var(--font-head);
-        color: #FFFFFF;
-        font-size: clamp(2.3rem, 5vw, 3.7rem);
-        font-weight: 800;
-        letter-spacing: -.045em;
-        line-height: 1.04;
-        margin: 0;
-        padding: 0;
-        max-width: 760px;
+        font-family: var(--font-head); font-size: clamp(2.3rem, 5vw, 3.9rem);
+        font-weight: 800; letter-spacing: -.045em; line-height: 1.04;
+        margin: 0; padding: 0; max-width: 640px;
         background: linear-gradient(100deg, #FFFFFF 30%, #E2CCFF 70%, #8CF3E8 100%);
-        -webkit-background-clip: text;
-        background-clip: text;
+        -webkit-background-clip: text; background-clip: text;
         -webkit-text-fill-color: transparent;
     }
+    .hero-copy {color: #C9CFF0; font-size: 1.05rem; margin: 1.1rem 0 0; max-width: 540px; line-height: 1.7;}
 
-    .hero-copy {
-        color: #C4CCEE;
-        font-size: 1.05rem;
-        margin: 1rem 0 0;
-        max-width: 620px;
-        line-height: 1.65;
+    .hero-card {
+        position: absolute; right: 52px; top: 50%; width: 310px; height: 190px;
+        border-radius: 24px; padding: 22px; transform: translateY(-50%) rotate(-6deg);
+        background: linear-gradient(135deg, rgba(255,255,255,.26), rgba(255,255,255,.05));
+        border: 1px solid rgba(255,255,255,.3); backdrop-filter: blur(18px);
+        box-shadow: 0 30px 60px -20px rgba(0,0,0,.5);
+        animation: float 6s ease-in-out infinite;
+        display: flex; flex-direction: column; justify-content: space-between;
     }
+    .hc-chip {width: 40px; height: 30px; border-radius: 7px; background: linear-gradient(135deg, #FFE08A, #E9A93B);}
+    .hc-num {font-family: var(--font-head); letter-spacing: .18em; font-size: 1.05rem; color: #F3EEFF;}
+    .hc-row {display: flex; justify-content: space-between; align-items: center; font-size: .72rem; color: #D7CBFF; letter-spacing: .08em;}
+    .hc-pill {padding: .28rem .7rem; border-radius: 999px; background: rgba(25,211,197,.22); border: 1px solid rgba(25,211,197,.5); color: #A9F5EC; font-weight: 700;}
+    @media (max-width: 980px) {.hero-card {display: none;}}
 
     /* ---------- Section headings ---------- */
-    .section-wrap {
-        display: flex;
-        align-items: flex-start;
-        gap: .95rem;
-        margin: .2rem 0 1rem;
-    }
-
+    .section-wrap {display: flex; align-items: flex-start; gap: 1rem; margin: .2rem 0 1.1rem;}
     .section-step {
-        flex: 0 0 auto;
-        width: 38px;
-        height: 38px;
-        display: grid;
-        place-items: center;
-        border-radius: 12px;
-        color: #FFFFFF;
-        font-family: var(--font-head);
-        font-weight: 700;
-        font-size: .95rem;
-        background: linear-gradient(135deg, var(--indigo), var(--violet));
-        box-shadow: 0 10px 20px -8px rgba(124,58,237,.65);
+        flex: 0 0 auto; width: 40px; height: 40px; display: grid; place-items: center;
+        border-radius: 13px; color: #fff; font-family: var(--font-head);
+        font-weight: 700; font-size: .95rem;
+        background: linear-gradient(135deg, #6D28D9, var(--violet));
+        box-shadow: 0 12px 22px -8px rgba(124,58,237,.7);
     }
-
-    .section-title {
-        font-family: var(--font-head);
-        color: var(--text);
-        font-size: 1.32rem;
-        font-weight: 700;
-        letter-spacing: -.02em;
-        line-height: 1.2;
-    }
-
-    .section-copy {
-        color: var(--muted);
-        font-size: .9rem;
-        margin-top: .2rem;
-        line-height: 1.55;
-    }
+    .section-title {font-family: var(--font-head); color: var(--text); font-size: 1.34rem; font-weight: 700; letter-spacing: -.02em; line-height: 1.2;}
+    .section-copy {color: var(--muted); font-size: .9rem; margin-top: .2rem; line-height: 1.55;}
 
     /* ---------- Form / cards ---------- */
     div[data-testid="stForm"] {
-        background: rgba(255,255,255,.86);
-        border: 1px solid rgba(255,255,255,.9);
-        outline: 1px solid var(--line);
-        border-radius: 26px;
-        padding: 1.6rem 1.7rem 1.5rem;
-        box-shadow: var(--shadow-md);
-        backdrop-filter: blur(14px);
+        position: relative; overflow: hidden;
+        background: rgba(255,255,255,.88); border: 1px solid #fff;
+        outline: 1px solid var(--line); border-radius: 28px;
+        padding: 1.8rem 1.9rem 1.6rem; box-shadow: var(--shadow-md);
+        backdrop-filter: blur(16px);
     }
-
+    div[data-testid="stForm"]::before {
+        content: ""; position: absolute; left: 0; right: 0; top: 0; height: 4px;
+        background: linear-gradient(90deg, var(--indigo), var(--violet), var(--aqua));
+    }
     div[data-testid="stExpander"] {
-        background: rgba(255,255,255,.8);
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        overflow: hidden;
-        box-shadow: var(--shadow-sm);
-        margin-bottom: 1.2rem;
+        background: rgba(255,255,255,.82); border: 1px solid var(--line);
+        border-radius: 18px; overflow: hidden; box-shadow: var(--shadow-sm); margin-bottom: 1.2rem;
     }
+    div[data-testid="stExpander"] details summary p {font-weight: 600; color: var(--text);}
 
-    div[data-testid="stExpander"] details summary p {
-        font-weight: 600;
-        color: var(--text);
+    div[data-testid="stWidgetLabel"] p, div[data-testid="stWidgetLabel"] label, div[data-testid="stForm"] label p {
+        color: var(--text) !important; font-weight: 600 !important; font-size: .88rem !important;
     }
-
-    /* Readable labels and input text on the light form card (any Streamlit theme) */
-    div[data-testid="stWidgetLabel"] p,
-    div[data-testid="stWidgetLabel"] label,
-    div[data-testid="stForm"] label p {
-        color: var(--text) !important;
-        font-weight: 600 !important;
-    }
-
     div[data-testid="stNumberInput"] div[data-baseweb="input"],
     div[data-testid="stNumberInput"] div[data-baseweb="base-input"],
     div[data-testid="stNumberInput"] input,
     div[data-testid="stSelectbox"] > div > div {
-        background: #FBFBFF !important;
-        background-color: #FBFBFF !important;
-        border-radius: 12px !important;
-        border-color: var(--line) !important;
+        background: #FBFAFF !important; background-color: #FBFAFF !important;
+        border-radius: 12px !important; border-color: var(--line) !important;
     }
-
-    div[data-testid="stNumberInput"] div[data-baseweb="input"] {
-        border: 1px solid var(--line) !important;
-        overflow: hidden;
-    }
-
-    div[data-testid="stNumberInput"] input {
-        border: 0 !important;
-        box-shadow: none !important;
-    }
-
+    div[data-testid="stNumberInput"] div[data-baseweb="input"] {border: 1px solid var(--line) !important; overflow: hidden;}
+    div[data-testid="stNumberInput"] input {border: 0 !important; box-shadow: none !important;}
     div[data-testid="stNumberInput"] input,
     div[data-testid="stSelectbox"] div[data-baseweb="select"] *,
-    div[data-testid="stSelectbox"] input {
-        color: var(--text) !important;
-        -webkit-text-fill-color: var(--text) !important;
-    }
-
-    div[data-testid="stNumberInput"] button {
-        background: #EEF0FA !important;
-        color: var(--text) !important;
-        border: 0 !important;
-    }
-
-    div[data-testid="stSelectbox"] svg {
-        fill: var(--muted) !important;
-    }
-
-    div[data-testid="stNumberInput"] input:focus,
+    div[data-testid="stSelectbox"] input {color: var(--text) !important; -webkit-text-fill-color: var(--text) !important;}
+    div[data-testid="stNumberInput"] button {background: #EFEBFB !important; color: var(--text) !important; border: 0 !important;}
+    div[data-testid="stSelectbox"] svg {fill: var(--muted) !important;}
+    div[data-testid="stNumberInput"] div[data-baseweb="input"]:focus-within,
     div[data-testid="stSelectbox"] > div > div:focus-within {
-        border-color: var(--indigo) !important;
-        box-shadow: 0 0 0 3px rgba(124,58,237,.16) !important;
+        border-color: var(--indigo) !important; box-shadow: 0 0 0 3px rgba(124,58,237,.18) !important;
     }
-
-    div[data-testid="stDataEditor"] {
-        border: 1px solid var(--line);
-        border-radius: 16px;
-        overflow: hidden;
-    }
+    div[data-testid="stDataEditor"] {border: 1px solid var(--line); border-radius: 18px; overflow: hidden; box-shadow: var(--shadow-sm);}
 
     div[data-testid="stFormSubmitButton"] button[kind="primary"] {
-        background: linear-gradient(95deg, var(--indigo) 0%, var(--violet) 55%, #C084FC 100%);
-        color: #FFFFFF;
-        border: 0;
-        border-radius: 14px;
-        min-height: 54px;
-        font-family: var(--font-head);
-        font-weight: 700;
-        font-size: 1rem;
-        letter-spacing: .005em;
-        box-shadow: 0 18px 34px -14px rgba(124,58,237,.75);
+        background: linear-gradient(95deg, #6D28D9 0%, var(--violet) 55%, #C084FC 100%);
+        color: #fff; border: 0; border-radius: 16px; min-height: 58px;
+        font-family: var(--font-head); font-weight: 700; font-size: 1.02rem;
+        box-shadow: 0 22px 40px -16px rgba(124,58,237,.8);
         transition: transform .18s ease, box-shadow .18s ease, filter .18s ease;
     }
-
     div[data-testid="stFormSubmitButton"] button[kind="primary"]:hover {
-        transform: translateY(-2px);
-        filter: brightness(1.06);
-        box-shadow: 0 22px 38px -14px rgba(124,58,237,.85);
+        transform: translateY(-2px); filter: brightness(1.07);
+        box-shadow: 0 26px 44px -16px rgba(124,58,237,.9);
     }
-
     div[data-testid="stFormSubmitButton"] button[kind="primary"]:focus-visible,
-    .stButton > button:focus-visible {
-        outline: 3px solid rgba(124,58,237,.4);
-        outline-offset: 2px;
+    .stButton > button:focus-visible {outline: 3px solid rgba(124,58,237,.4); outline-offset: 2px;}
+    .stButton > button, div[data-testid="stDownloadButton"] > button {
+        border-radius: 14px; border: 1px solid var(--line); background: #fff;
+        font-weight: 600; color: var(--text); box-shadow: var(--shadow-sm);
+        transition: border-color .15s ease, color .15s ease, transform .15s ease;
     }
-
-    .stButton > button,
-    div[data-testid="stDownloadButton"] > button {
-        border-radius: 12px;
-        border: 1px solid var(--line);
-        background: #FFFFFF;
-        font-weight: 600;
-        color: var(--text);
-        transition: border-color .15s ease, color .15s ease;
-    }
-
-    .stButton > button:hover,
-    div[data-testid="stDownloadButton"] > button:hover {
-        border-color: var(--indigo);
-        color: var(--indigo);
+    .stButton > button:hover, div[data-testid="stDownloadButton"] > button:hover {
+        border-color: var(--indigo); color: var(--indigo); transform: translateY(-1px);
     }
 
     /* ---------- Result ---------- */
     .result-shell {
-        position: relative;
-        overflow: hidden;
-        background: var(--surface);
-        border: 1px solid var(--line);
-        border-radius: 26px;
-        padding: 28px 30px;
-        box-shadow: var(--shadow-lg);
-        display: flex;
-        flex-direction: column;
-        justify-content: center;
+        position: relative; overflow: hidden; background: var(--surface);
+        border: 1px solid var(--line); border-top: 5px solid var(--mint);
+        border-radius: 28px; padding: 30px 32px; box-shadow: var(--shadow-lg);
+        display: flex; flex-direction: column; justify-content: center;
     }
-
+    .result-shell.mid {border-top-color: var(--amber);}
+    .result-shell.high {border-top-color: var(--coral);}
     .result-shell::before {
-        content: "";
-        position: absolute;
-        width: 320px;
-        height: 320px;
-        right: -120px;
-        top: -140px;
-        border-radius: 50%;
-        opacity: .18;
-        filter: blur(6px);
+        content: ""; position: absolute; width: 320px; height: 320px; right: -120px; top: -140px;
+        border-radius: 50%; opacity: .2; filter: blur(6px);
     }
-
     .result-shell.low::before {background: radial-gradient(circle, var(--mint), transparent 70%);}
     .result-shell.mid::before {background: radial-gradient(circle, var(--amber), transparent 70%);}
     .result-shell.high::before {background: radial-gradient(circle, var(--coral), transparent 70%);}
-
-    .result-top {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: .8rem;
-        flex-wrap: wrap;
-    }
-
-    .result-eyebrow {
-        color: var(--muted);
-        font-size: .88rem;
-        font-weight: 600;
-    }
-
-    .result-status {
-        display: inline-flex;
-        align-items: center;
-        gap: .45rem;
-        border-radius: 999px;
-        padding: .4rem .8rem;
-        font-size: .82rem;
-        font-weight: 700;
-    }
-
+    .result-top {display: flex; align-items: center; justify-content: space-between; gap: .8rem; flex-wrap: wrap;}
+    .result-eyebrow {color: var(--muted); font-size: .86rem; font-weight: 600;}
+    .result-status {display: inline-flex; align-items: center; gap: .45rem; border-radius: 999px; padding: .4rem .85rem; font-size: .8rem; font-weight: 700;}
     .result-shell.low .result-status {color: #0A7A54; background: #E6F8F0; border: 1px solid #C4EEDB;}
     .result-shell.mid .result-status {color: #9A6200; background: #FFF5DD; border: 1px solid #FFE2A3;}
     .result-shell.high .result-status {color: #C2264A; background: #FFEDF1; border: 1px solid #FFCFDA;}
-
     .result-number {
-        font-family: var(--font-head);
-        font-size: clamp(3.6rem, 7vw, 5.6rem);
-        font-weight: 800;
-        letter-spacing: -.06em;
-        line-height: 1;
-        margin: .7rem 0 1.1rem;
-        -webkit-background-clip: text;
-        background-clip: text;
-        -webkit-text-fill-color: transparent;
+        font-family: var(--font-head); font-size: clamp(3.8rem, 7vw, 5.8rem);
+        font-weight: 800; letter-spacing: -.06em; line-height: 1; margin: .7rem 0 1.2rem;
+        -webkit-background-clip: text; background-clip: text; -webkit-text-fill-color: transparent;
     }
-
     .result-shell.low .result-number {background-image: linear-gradient(120deg, #0E9F6E, #19D3C5);}
     .result-shell.mid .result-number {background-image: linear-gradient(120deg, #FFB020, #FF8A5C);}
     .result-shell.high .result-number {background-image: linear-gradient(120deg, #FF5C7A, #FF8A5C);}
-
-    .meter {
-        position: relative;
-        height: 12px;
-        border-radius: 999px;
-        background: #EEF0FA;
-        overflow: visible;
-    }
-
-    .meter-fill {
-        height: 100%;
-        border-radius: 999px;
-    }
-
+    .meter {position: relative; height: 14px; border-radius: 999px; background: #EEEAFB; overflow: visible;}
+    .meter-fill {height: 100%; border-radius: 999px;}
     .result-shell.low .meter-fill {background: linear-gradient(90deg, #22C58B, #19D3C5);}
     .result-shell.mid .meter-fill {background: linear-gradient(90deg, #FFD166, #FFB020);}
     .result-shell.high .meter-fill {background: linear-gradient(90deg, #FF8A5C, #FF5C7A);}
-
-    .meter-mark {
-        position: absolute;
-        top: -5px;
-        width: 3px;
-        height: 22px;
-        border-radius: 3px;
-        background: var(--ink);
-        transform: translateX(-50%);
-    }
-
-    .meter-scale {
-        display: flex;
-        justify-content: space-between;
-        color: var(--muted);
-        font-size: .76rem;
-        font-weight: 500;
-        margin-top: .55rem;
-    }
-
+    .meter-mark {position: absolute; top: -5px; width: 3px; height: 24px; border-radius: 3px; background: var(--ink); transform: translateX(-50%);}
+    .meter-scale {display: flex; justify-content: space-between; color: var(--muted); font-size: .76rem; font-weight: 500; margin-top: .55rem;}
     .advice {
-        background: linear-gradient(120deg, #160B36, #3B1B7A);
-        color: #F1E8FF;
-        border-radius: 18px;
-        padding: 1rem 1.2rem;
-        font-size: .92rem;
-        line-height: 1.6;
-        margin-top: 1rem;
-        box-shadow: var(--shadow-md);
+        background: linear-gradient(120deg, #140A30, #3B1B7A); color: #F1E8FF;
+        border-radius: 20px; padding: 1.05rem 1.25rem; font-size: .92rem;
+        line-height: 1.65; margin-top: 1rem; box-shadow: var(--shadow-md);
+        border: 1px solid rgba(255,255,255,.1);
     }
-
     .insight {
-        background: #FFFFFF;
-        border: 1px solid var(--line);
-        border-left: 4px solid var(--indigo);
-        border-radius: 14px;
-        padding: .8rem 1rem;
-        margin-bottom: .6rem;
-        font-size: .92rem;
-        color: var(--text);
-        box-shadow: var(--shadow-sm);
+        background: #fff; border: 1px solid var(--line); border-left: 4px solid var(--indigo);
+        border-radius: 14px; padding: .85rem 1.05rem; margin-bottom: .6rem;
+        font-size: .92rem; color: var(--text); box-shadow: var(--shadow-sm);
     }
 
     /* ---------- Metrics ---------- */
     div[data-testid="stMetric"] {
-        background: var(--surface);
-        border: 1px solid var(--line);
-        border-radius: 18px;
-        padding: 18px 20px;
-        box-shadow: var(--shadow-sm);
-        position: relative;
-        overflow: hidden;
+        background: var(--surface); border: 1px solid var(--line); border-radius: 20px;
+        padding: 20px 22px; box-shadow: var(--shadow-sm); position: relative; overflow: hidden;
+        transition: transform .2s ease, box-shadow .2s ease;
     }
-
+    div[data-testid="stMetric"]:hover {transform: translateY(-3px); box-shadow: var(--shadow-md);}
     div[data-testid="stMetric"]::before {
-        content: "";
-        position: absolute;
-        left: 0;
-        top: 16px;
-        bottom: 16px;
-        width: 4px;
-        border-radius: 0 4px 4px 0;
-        background: linear-gradient(180deg, var(--indigo), var(--aqua));
+        content: ""; position: absolute; left: 0; top: 16px; bottom: 16px; width: 4px;
+        border-radius: 0 4px 4px 0; background: linear-gradient(180deg, var(--indigo), var(--aqua));
     }
-
-    div[data-testid="stMetricLabel"] {
-        color: var(--muted);
-        font-weight: 600;
+    div[data-testid="stMetricLabel"],
+    div[data-testid="stMetricLabel"] *,
+    div[data-testid="stMetricLabel"] p {
+        color: #4A3F73 !important;
+        -webkit-text-fill-color: #4A3F73 !important;
+        font-weight: 700 !important;
+        font-size: .82rem !important;
+        letter-spacing: .02em;
+        opacity: 1 !important;
     }
-
-    div[data-testid="stMetricValue"] {
-        font-family: var(--font-head);
-        color: var(--text);
-        font-weight: 700;
-        letter-spacing: -.03em;
-    }
+    div[data-testid="stMetricValue"] {font-family: var(--font-head); color: var(--text); font-weight: 700; letter-spacing: -.03em;}
 
     /* ---------- Tabs / charts ---------- */
-    div[data-baseweb="tab-list"] {
-        gap: .4rem;
-        background: #E9EBF8;
-        padding: .3rem;
-        border-radius: 14px;
-        width: fit-content;
-    }
+    div[data-baseweb="tab-list"] {gap: .4rem; background: #EAE5FA; padding: .3rem; border-radius: 16px; width: fit-content;}
+    button[data-baseweb="tab"] {font-weight: 600; border-radius: 12px; padding: .5rem 1.2rem; height: auto;}
+    button[data-baseweb="tab"][aria-selected="true"] {background: #fff; color: var(--indigo); box-shadow: var(--shadow-sm);}
+    div[data-baseweb="tab-highlight"], div[data-baseweb="tab-border"] {display: none;}
+    div[data-testid="stPlotlyChart"] {background: #fff; border: 1px solid var(--line); border-radius: 22px; padding: .5rem; box-shadow: var(--shadow-sm);}
 
-    button[data-baseweb="tab"] {
-        font-weight: 600;
-        border-radius: 10px;
-        padding: .45rem 1.1rem;
-        height: auto;
-    }
-
-    button[data-baseweb="tab"][aria-selected="true"] {
-        background: #FFFFFF;
-        color: var(--indigo);
-        box-shadow: var(--shadow-sm);
-    }
-
-    div[data-baseweb="tab-highlight"], div[data-baseweb="tab-border"] {
-        display: none;
-    }
-
-    div[data-testid="stPlotlyChart"] {
-        background: #FFFFFF;
-        border: 1px solid var(--line);
-        border-radius: 20px;
-        padding: .4rem;
-        box-shadow: var(--shadow-sm);
-    }
-
-    .footer-note {
-        color: #8A91AD;
-        font-size: .8rem;
-        text-align: center;
-        padding: 2rem 0 .2rem;
-    }
-
-    hr {
-        border-color: var(--line) !important;
-        margin: 1.4rem 0 !important;
-    }
+    .footer-note {color: #8A91AD; font-size: .8rem; text-align: center; padding: 2rem 0 .2rem;}
+    hr {border-color: var(--line) !important; margin: 1.4rem 0 !important;}
 
     @media (max-width: 700px) {
-        .block-container {
-            padding-left: .9rem;
-            padding-right: .9rem;
-            padding-top: .8rem;
-        }
-
-        .hero {
-            padding: 30px 22px 28px;
-            border-radius: 22px;
-        }
-
-        div[data-testid="stForm"] {
-            padding: 1rem .9rem 1.1rem;
-            border-radius: 20px;
-        }
-
-        .result-shell {
-            padding: 22px;
-            border-radius: 20px;
-        }
+        .block-container {padding-left: .9rem; padding-right: .9rem; padding-top: .8rem;}
+        .hero {padding: 32px 22px 30px; border-radius: 24px;}
+        div[data-testid="stForm"] {padding: 1rem .9rem 1.1rem; border-radius: 22px;}
+        .result-shell {padding: 22px; border-radius: 22px;}
     }
-
     @media (prefers-reduced-motion: reduce) {
-        .hero-dot {animation: none;}
+        .hero-dot, .hero-card {animation: none;}
         * {transition: none !important;}
     }
+    /* ---------- Readability + motion polish ---------- */
+    div[data-testid="stCaptionContainer"],
+    div[data-testid="stCaptionContainer"] * {color: #5B5483 !important; font-size: .86rem !important;}
+    button[data-baseweb="tab"] p {color: #4A3F73 !important; font-weight: 600 !important;}
+    button[data-baseweb="tab"][aria-selected="true"] p {color: var(--indigo) !important;}
+    div[data-testid="stExpander"] details summary p {color: var(--text) !important;}
+    @keyframes rise {from {opacity: 0; transform: translateY(14px);} to {opacity: 1; transform: none;}}
+    .result-shell, .advice, .insight, div[data-testid="stMetric"], div[data-testid="stPlotlyChart"] {
+        animation: rise .6s ease backwards;
+    }
+    .scenario-note {
+        background: linear-gradient(90deg, rgba(124,58,237,.10), rgba(25,211,197,.08));
+        border: 1px solid rgba(124,58,237,.2); border-radius: 16px;
+        padding: .9rem 1.1rem; color: #3B3360; font-size: .92rem; line-height: 1.6; margin-top: .8rem;
+    }
+    @media (prefers-reduced-motion: reduce) {
+        .result-shell, .advice, .insight, div[data-testid="stMetric"], div[data-testid="stPlotlyChart"] {animation: none;}
+    }
+
+    /* ---------- Metric headings (robust) + primary buttons + hero CTA ---------- */
+    div[data-testid="stMetric"] label,
+    div[data-testid="stMetric"] label *,
+    div[data-testid="stMetric"] > div:first-child,
+    div[data-testid="stMetric"] > div:first-child *,
+    div[data-testid="stMetricLabel"],
+    div[data-testid="stMetricLabel"] * {
+        color: #4A3F73 !important;
+        -webkit-text-fill-color: #4A3F73 !important;
+        opacity: 1 !important;
+        font-weight: 700 !important;
+        font-size: .82rem !important;
+    }
+    div[data-testid="stMetricValue"],
+    div[data-testid="stMetricValue"] * {
+        color: #1B2140 !important;
+        -webkit-text-fill-color: #1B2140 !important;
+        font-size: 2rem !important;
+    }
+    .stButton > button[kind="primary"] {
+        background: linear-gradient(95deg, #6D28D9 0%, var(--violet) 60%, #C084FC 100%);
+        color: #fff; border: 0; min-height: 52px; font-family: var(--font-head);
+        box-shadow: 0 18px 34px -16px rgba(124,58,237,.8);
+    }
+    .stButton > button[kind="primary"]:hover {color: #fff; filter: brightness(1.07); transform: translateY(-2px);}
+    .hero-cta {
+        display: inline-block; margin-top: 1.5rem; padding: .7rem 1.3rem; border-radius: 14px;
+        background: rgba(255,255,255,.14); border: 1px solid rgba(255,255,255,.32);
+        color: #fff !important; font-weight: 600; font-size: .9rem; text-decoration: none !important;
+        backdrop-filter: blur(10px); transition: background .2s ease, transform .2s ease;
+    }
+    .hero-cta:hover {background: rgba(255,255,255,.26); transform: translateY(-2px);}
+    div[data-testid="stFileUploader"] section {
+        background: #FBFAFF; border: 2px dashed #CDBDF5; border-radius: 18px;
+    }
+    div[data-testid="stFileUploader"] section * {color: #3B3360 !important;}
+    div[data-testid="stFileUploader"] section button {background: #fff !important; border: 1px solid var(--line) !important;}
+    div[data-testid="stDataFrame"] {border: 1px solid var(--line); border-radius: 18px; overflow: hidden; box-shadow: var(--shadow-sm);}
+
     </style>
     """,
     unsafe_allow_html=True,
@@ -822,6 +610,118 @@ def build_insights(result: Dict[str, Any]) -> List[str]:
         )
 
     return notes
+
+
+def simulate_payment_scenarios(customer_data: pd.DataFrame) -> pd.DataFrame:
+    """Re-score the customer with all six payments scaled up or down."""
+    pay_cols = [f"PAY_AMT{i}" for i in range(1, 7)]
+    labels = {0.0: "No payments", 0.5: "Half", 1.0: "Current", 1.5: "+50%", 2.0: "Double"}
+    rows = []
+    for factor, label in labels.items():
+        scenario = customer_data.copy()
+        scenario[pay_cols] = scenario[pay_cols].astype(float) * factor
+        try:
+            scenario_fe = add_credit_features(scenario)[model_features]
+            prob = float(model.predict_proba(scenario_fe)[0, 1])
+        except Exception:
+            continue
+        rows.append({"Scenario": label, "Factor": factor, "Probability": prob * 100})
+    return pd.DataFrame(rows)
+
+
+def scenario_chart(scenarios: pd.DataFrame, cutoff: float) -> go.Figure:
+    """Bar chart of default probability under different payment levels."""
+    colors = [
+        CORAL if p / 100 >= cutoff else AMBER if p / 100 >= cutoff * 0.6 else MINT
+        for p in scenarios["Probability"]
+    ]
+    fig = go.Figure(
+        go.Bar(
+            x=scenarios["Scenario"],
+            y=scenarios["Probability"],
+            marker=dict(color=colors, cornerradius=10),
+            text=[f"{v:.1f}%" for v in scenarios["Probability"]],
+            textposition="outside",
+            hovertemplate="%{x}<br>Default probability: %{y:.1f}%<extra></extra>",
+        )
+    )
+    fig.add_hline(
+        y=cutoff * 100,
+        line_dash="dash",
+        line_color=INK,
+        opacity=.55,
+        annotation_text=f"Threshold {cutoff * 100:.0f}%",
+        annotation_position="top left",
+    )
+    fig.update_layout(showlegend=False, xaxis_title=None, yaxis_title=None)
+    polish_chart(fig, "Default probability vs payment level", "Probability (%)", 380)
+    fig.update_yaxes(range=[0, max(100 * cutoff * 1.4, float(scenarios["Probability"].max()) * 1.25)])
+    return fig
+
+
+BATCH_COLUMNS = [
+    "LIMIT_BAL", "SEX", "EDUCATION", "MARRIAGE", "AGE",
+    "PAY_0", "PAY_2", "PAY_3", "PAY_4", "PAY_5", "PAY_6",
+    "BILL_AMT1", "BILL_AMT2", "BILL_AMT3", "BILL_AMT4", "BILL_AMT5", "BILL_AMT6",
+    "PAY_AMT1", "PAY_AMT2", "PAY_AMT3", "PAY_AMT4", "PAY_AMT5", "PAY_AMT6",
+]
+
+
+def batch_template() -> pd.DataFrame:
+    """Return a two-row example CSV template for batch scoring."""
+    base = {
+        "LIMIT_BAL": 200000, "SEX": 1, "EDUCATION": 2, "MARRIAGE": 2, "AGE": 30,
+        "PAY_0": 0, "PAY_2": 0, "PAY_3": 0, "PAY_4": 0, "PAY_5": 0, "PAY_6": 0,
+    }
+    for i, bill in enumerate([50000, 45000, 40000, 35000, 30000, 25000], start=1):
+        base[f"BILL_AMT{i}"] = bill
+    for i in range(1, 7):
+        base[f"PAY_AMT{i}"] = 5000
+    risky = dict(base, PAY_0=2, PAY_2=2, PAY_3=1, AGE=45, LIMIT_BAL=80000)
+    return pd.DataFrame([base, risky])[BATCH_COLUMNS]
+
+
+def run_batch(raw: pd.DataFrame) -> Tuple[pd.DataFrame, int]:
+    """Score every valid row; return (results, number_of_skipped_rows)."""
+    missing = [c for c in BATCH_COLUMNS if c not in raw.columns]
+    if missing:
+        raise ValueError("Missing required columns: " + ", ".join(missing))
+
+    data = raw[BATCH_COLUMNS].apply(pd.to_numeric, errors="coerce")
+    valid_mask = np.isfinite(data.to_numpy(dtype=float)).all(axis=1)
+    valid = data[valid_mask].copy()
+    skipped = int((~valid_mask).sum())
+    if valid.empty:
+        raise ValueError("No valid rows found. Check the numeric values in your file.")
+
+    features = add_credit_features(valid)[model_features]
+    probs = model.predict_proba(features)[:, 1]
+
+    results = valid.copy()
+    results.insert(0, "Default Probability (%)", np.round(probs * 100, 2))
+    results.insert(1, "Risk Level", [risk_band(float(x), threshold)[0] for x in probs])
+    results.insert(2, "Decision", np.where(probs >= threshold, "Flag for review", "Standard"))
+    return results.reset_index(drop=True), skipped
+
+
+def batch_histogram(results: pd.DataFrame, cutoff: float) -> go.Figure:
+    """Histogram of predicted default probabilities across the batch."""
+    fig = go.Figure(
+        go.Histogram(
+            x=results["Default Probability (%)"],
+            nbinsx=20,
+            marker=dict(color=INDIGO, line=dict(color="#FFFFFF", width=1)),
+            hovertemplate="%{x}%<br>Customers: %{y}<extra></extra>",
+        )
+    )
+    fig.add_vline(
+        x=cutoff * 100, line_dash="dash", line_color=CORAL,
+        annotation_text=f"Threshold {cutoff * 100:.0f}%", annotation_position="top",
+    )
+    fig.update_layout(showlegend=False, xaxis_title="Default probability (%)", yaxis_title=None)
+    polish_chart(fig, "Risk distribution across the batch", None, 340)
+    return fig
+
 
 def polish_chart(
     fig: go.Figure,
@@ -1124,6 +1024,12 @@ st.markdown(
             Enter a customer profile and six months of repayment behavior to estimate
             next-month default probability, with a clear explanation of what drives it.
         </p>
+        <a class="hero-cta" href="#batch-processing" target="_self">Batch processing ↓</a>
+        <div class="hero-card">
+            <div class="hc-row"><span>CREDIT RISK</span><span class="hc-pill">AI SCORED</span></div>
+            <div><div class="hc-chip"></div></div>
+            <div class="hc-num">•••• •••• •••• 4821</div>
+        </div>
     </div>
     """,
     unsafe_allow_html=True,
@@ -1383,7 +1289,9 @@ if "assessment" in st.session_state:
     )
 
     st.write("")
-    trends_tab, explain_tab = st.tabs(["Payment trends", "Model explanation"])
+    trends_tab, scenario_tab, explain_tab = st.tabs(
+        ["Payment trends", "What-if scenarios", "Model explanation"]
+    )
 
     with trends_tab:
         chart_1, chart_2 = st.columns(2)
@@ -1406,6 +1314,32 @@ if "assessment" in st.session_state:
             config={"displayModeBar": False},
         )
 
+    with scenario_tab:
+        st.caption(
+            "The same customer is re-scored with payments scaled up or down. "
+            "Repayment status and balances are held constant."
+        )
+        scenarios = simulate_payment_scenarios(st.session_state.customer_data)
+        if scenarios.empty:
+            st.info("Scenario analysis is unavailable for this profile.")
+        else:
+            st.plotly_chart(
+                scenario_chart(scenarios, threshold),
+                use_container_width=True,
+                config={"displayModeBar": False},
+            )
+            current = scenarios.loc[scenarios["Factor"] == 1.0, "Probability"]
+            best = scenarios.loc[scenarios["Probability"].idxmin()]
+            if not current.empty:
+                delta = float(current.iloc[0]) - float(best["Probability"])
+                msg = (
+                    f"Lowest modelled risk is <b>{best['Probability']:.1f}%</b> "
+                    f"under the <b>{best['Scenario']}</b> scenario"
+                    + (f", a change of <b>{delta:.1f} points</b> from today." if delta > 0.05
+                       else ": payment level has little effect on this profile.")
+                )
+                st.markdown(f'<div class="scenario-note">{msg}</div>', unsafe_allow_html=True)
+
     with explain_tab:
         st.caption(
             "SHAP values indicate which features moved this prediction up or down. "
@@ -1421,6 +1355,72 @@ if "assessment" in st.session_state:
             )
         else:
             st.info(shap_error)
+
+# ============================================================
+# BATCH PROCESSING
+# ============================================================
+st.write("")
+st.markdown('<div id="batch-processing"></div>', unsafe_allow_html=True)
+section(
+    "B",
+    "Batch processing",
+    "Score many customers at once: download the template, fill it in, and upload it as a CSV.",
+)
+
+tpl_col, up_col = st.columns([1, 2], gap="large")
+with tpl_col:
+    st.download_button(
+        "⬇️ Download CSV template",
+        data=batch_template().to_csv(index=False),
+        file_name="batch_template.csv",
+        mime="text/csv",
+        use_container_width=True,
+    )
+    st.caption("One row per customer. All 23 columns are required.")
+with up_col:
+    batch_file = st.file_uploader("Upload customer CSV", type=["csv"], key="batch_upload")
+
+if batch_file is not None:
+    if st.button("🚀 Run batch scoring", type="primary", use_container_width=True):
+        try:
+            with st.spinner("Scoring customers..."):
+                batch_results, batch_skipped = run_batch(pd.read_csv(batch_file))
+            st.session_state.batch_results = batch_results
+            st.session_state.batch_skipped = batch_skipped
+            st.toast("Batch scoring completed.")
+        except Exception as exc:
+            st.session_state.pop("batch_results", None)
+            st.error(f"Batch scoring failed: {exc}")
+
+if "batch_results" in st.session_state:
+    batch_out = st.session_state.batch_results
+    flagged = int((batch_out["Decision"] == "Flag for review").sum())
+
+    st.write("")
+    b1, b2, b3 = st.columns(3)
+    b1.metric("Customers scored", f"{len(batch_out):,}")
+    b2.metric("Flagged for review", f"{flagged:,}")
+    b3.metric("Average default risk", f"{batch_out['Default Probability (%)'].mean():.1f}%")
+
+    if st.session_state.get("batch_skipped", 0):
+        st.warning(f"{st.session_state.batch_skipped} row(s) were skipped because of missing or invalid values.")
+
+    st.plotly_chart(
+        batch_histogram(batch_out, threshold),
+        use_container_width=True,
+        config={"displayModeBar": False},
+    )
+    st.dataframe(
+        batch_out.sort_values("Default Probability (%)", ascending=False),
+        use_container_width=True,
+        hide_index=True,
+    )
+    st.download_button(
+        "⬇️ Download scored results",
+        data=batch_out.to_csv(index=False),
+        file_name="batch_scored_results.csv",
+        mime="text/csv",
+    )
 
 # ============================================================
 # FOOTER
