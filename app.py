@@ -1013,6 +1013,97 @@ if "history_data" not in st.session_state:
     st.session_state.history_data = DEFAULT_HISTORY.copy()
 
 # ============================================================
+# BATCH PAGE
+# ============================================================
+if st.session_state.get("view") == "batch":
+    st.markdown(
+        """
+        <div class="hero">
+            <div class="hero-badge"><span class="hero-dot"></span>Batch processing</div>
+            <h1 class="hero-title">Score many customers at once.</h1>
+            <p class="hero-copy">
+                Upload a CSV of customer profiles and get a default probability,
+                risk level and decision for every row in seconds.
+            </p>
+        </div>
+        """,
+        unsafe_allow_html=True,
+    )
+    back_col, _ = st.columns([1, 3])
+    with back_col:
+        if st.button("← Back to single assessment", use_container_width=True):
+            st.session_state.view = "single"
+            st.rerun()
+
+    st.write("")
+    section(
+        "1",
+        "Upload your customer file",
+        "Download the template, fill it in, and upload it as a CSV. All 23 columns are required.",
+    )
+
+    tpl_col, up_col = st.columns([1, 2], gap="large")
+    with tpl_col:
+        st.download_button(
+            "⬇️ Download CSV template",
+            data=batch_template().to_csv(index=False),
+            file_name="batch_template.csv",
+            mime="text/csv",
+            use_container_width=True,
+        )
+        st.caption("One row per customer. All 23 columns are required.")
+    with up_col:
+        batch_file = st.file_uploader("Upload customer CSV", type=["csv"], key="batch_upload")
+
+    if batch_file is not None:
+        if st.button("🚀 Run batch scoring", type="primary", use_container_width=True):
+            try:
+                with st.spinner("Scoring customers..."):
+                    batch_results, batch_skipped = run_batch(pd.read_csv(batch_file))
+                st.session_state.batch_results = batch_results
+                st.session_state.batch_skipped = batch_skipped
+                st.toast("Batch scoring completed.")
+            except Exception as exc:
+                st.session_state.pop("batch_results", None)
+                st.error(f"Batch scoring failed: {exc}")
+
+    if "batch_results" in st.session_state:
+        batch_out = st.session_state.batch_results
+        flagged = int((batch_out["Decision"] == "Flag for review").sum())
+
+        st.write("")
+        b1, b2, b3 = st.columns(3)
+        b1.metric("Customers scored", f"{len(batch_out):,}")
+        b2.metric("Flagged for review", f"{flagged:,}")
+        b3.metric("Average default risk", f"{batch_out['Default Probability (%)'].mean():.1f}%")
+
+        if st.session_state.get("batch_skipped", 0):
+            st.warning(f"{st.session_state.batch_skipped} row(s) were skipped because of missing or invalid values.")
+
+        st.plotly_chart(
+            batch_histogram(batch_out, threshold),
+            use_container_width=True,
+            config={"displayModeBar": False},
+        )
+        st.dataframe(
+            batch_out.sort_values("Default Probability (%)", ascending=False),
+            use_container_width=True,
+            hide_index=True,
+        )
+        st.download_button(
+            "⬇️ Download scored results",
+            data=batch_out.to_csv(index=False),
+            file_name="batch_scored_results.csv",
+            mime="text/csv",
+        )
+
+    st.markdown(
+        '<div class="footer-note">Credit Risk Intelligence · Decision support only</div>',
+        unsafe_allow_html=True,
+    )
+    st.stop()
+
+# ============================================================
 # HERO
 # ============================================================
 st.markdown(
@@ -1024,7 +1115,6 @@ st.markdown(
             Enter a customer profile and six months of repayment behavior to estimate
             next-month default probability, with a clear explanation of what drives it.
         </p>
-        <a class="hero-cta" href="#batch-processing" target="_self">Batch processing ↓</a>
         <div class="hero-card">
             <div class="hc-row"><span>CREDIT RISK</span><span class="hc-pill">AI SCORED</span></div>
             <div><div class="hc-chip"></div></div>
@@ -1034,6 +1124,12 @@ st.markdown(
     """,
     unsafe_allow_html=True,
 )
+
+_, nav_col = st.columns([3, 1])
+with nav_col:
+    if st.button("🗂️ Batch processing", type="primary", use_container_width=True):
+        st.session_state.view = "batch"
+        st.rerun()
 
 with st.expander("Demo controls"):
     demo_col, reset_col = st.columns(2)
@@ -1355,72 +1451,6 @@ if "assessment" in st.session_state:
             )
         else:
             st.info(shap_error)
-
-# ============================================================
-# BATCH PROCESSING
-# ============================================================
-st.write("")
-st.markdown('<div id="batch-processing"></div>', unsafe_allow_html=True)
-section(
-    "B",
-    "Batch processing",
-    "Score many customers at once: download the template, fill it in, and upload it as a CSV.",
-)
-
-tpl_col, up_col = st.columns([1, 2], gap="large")
-with tpl_col:
-    st.download_button(
-        "⬇️ Download CSV template",
-        data=batch_template().to_csv(index=False),
-        file_name="batch_template.csv",
-        mime="text/csv",
-        use_container_width=True,
-    )
-    st.caption("One row per customer. All 23 columns are required.")
-with up_col:
-    batch_file = st.file_uploader("Upload customer CSV", type=["csv"], key="batch_upload")
-
-if batch_file is not None:
-    if st.button("🚀 Run batch scoring", type="primary", use_container_width=True):
-        try:
-            with st.spinner("Scoring customers..."):
-                batch_results, batch_skipped = run_batch(pd.read_csv(batch_file))
-            st.session_state.batch_results = batch_results
-            st.session_state.batch_skipped = batch_skipped
-            st.toast("Batch scoring completed.")
-        except Exception as exc:
-            st.session_state.pop("batch_results", None)
-            st.error(f"Batch scoring failed: {exc}")
-
-if "batch_results" in st.session_state:
-    batch_out = st.session_state.batch_results
-    flagged = int((batch_out["Decision"] == "Flag for review").sum())
-
-    st.write("")
-    b1, b2, b3 = st.columns(3)
-    b1.metric("Customers scored", f"{len(batch_out):,}")
-    b2.metric("Flagged for review", f"{flagged:,}")
-    b3.metric("Average default risk", f"{batch_out['Default Probability (%)'].mean():.1f}%")
-
-    if st.session_state.get("batch_skipped", 0):
-        st.warning(f"{st.session_state.batch_skipped} row(s) were skipped because of missing or invalid values.")
-
-    st.plotly_chart(
-        batch_histogram(batch_out, threshold),
-        use_container_width=True,
-        config={"displayModeBar": False},
-    )
-    st.dataframe(
-        batch_out.sort_values("Default Probability (%)", ascending=False),
-        use_container_width=True,
-        hide_index=True,
-    )
-    st.download_button(
-        "⬇️ Download scored results",
-        data=batch_out.to_csv(index=False),
-        file_name="batch_scored_results.csv",
-        mime="text/csv",
-    )
 
 # ============================================================
 # FOOTER
