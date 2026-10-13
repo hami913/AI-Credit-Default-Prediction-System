@@ -102,7 +102,7 @@ def sample_customer(artifact):
     )
 
     customer["PAY_TO_LIMIT_RATIO"] = (
-        sum(payments) / customer["LIMIT_BAL"]
+        (sum(payments) / 6) / customer["LIMIT_BAL"]
     )
 
     missing = set(features) - set(customer)
