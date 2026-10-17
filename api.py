@@ -1,4 +1,4 @@
-﻿from pathlib import Path
+from pathlib import Path
 
 import joblib
 import pandas as pd
@@ -27,6 +27,7 @@ artifact = joblib.load(MODEL_PATH)
 
 pipeline = artifact["pipeline"]
 threshold = float(artifact.get("threshold", 0.50))
+model_features = list(artifact["features"])
 
 
 # ============================================================
@@ -114,7 +115,7 @@ def predict(customer: CustomerData):
 
         # Predict probability of Class 1 = Default
         probability = float(
-            pipeline.predict_proba(engineered_df)[0, 1]
+            pipeline.predict_proba(engineered_df.loc[:, model_features])[0, 1]
         )
 
         prediction = int(probability >= threshold)

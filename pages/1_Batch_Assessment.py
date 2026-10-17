@@ -1,4 +1,4 @@
-﻿import streamlit as st
+import streamlit as st
 import pandas as pd
 import numpy as np
 import joblib
@@ -315,13 +315,11 @@ if uploaded_file is not None:
 
     try:
 
-        engineered_data = add_credit_features(
+        all_engineered_data = add_credit_features(
             raw_inputs
         )
 
-        engineered_data = engineered_data[
-            model_features
-        ]
+        engineered_data = all_engineered_data.loc[:, model_features]
 
     except Exception as error:
 
@@ -400,13 +398,13 @@ if uploaded_file is not None:
     )
 
     results["Delayed_Months"] = (
-        engineered_data[
+        all_engineered_data[
             "DELAY_MONTHS"
         ].astype(int).values
     )
 
     results["Average_Utilization_Percent"] = (
-        engineered_data[
+        all_engineered_data[
             "AVG_UTILIZATION"
         ].values * 100
     ).round(2)
