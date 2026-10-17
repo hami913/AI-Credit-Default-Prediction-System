@@ -10,6 +10,25 @@ def add_credit_features(data):
 
     df_fe = data.copy()
 
+    # EDUCATION_GROUPING_V1
+    # Match categorical grouping used for model training.
+    if "EDUCATION" in df_fe.columns:
+        df_fe["EDUCATION"] = df_fe["EDUCATION"].replace(
+            {0: 4, 5: 4, 6: 4}
+        )
+
+        if not df_fe["EDUCATION"].isin([1, 2, 3, 4]).all():
+            raise ValueError("Unsupported EDUCATION category.")
+
+    if "MARRIAGE" in df_fe.columns:
+        df_fe["MARRIAGE"] = df_fe["MARRIAGE"].replace(
+            {0: 3}
+        )
+
+        if not df_fe["MARRIAGE"].isin([1, 2, 3]).all():
+            raise ValueError("Unsupported MARRIAGE category.")
+
+
     # Monthly utilization
     utilization_cols = []
 

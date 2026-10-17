@@ -1,4 +1,4 @@
-﻿"""Credit Risk Intelligence - Streamlit front end for the credit default model."""
+"""Credit Risk Intelligence - Streamlit front end for the credit default model."""
 
 from pathlib import Path
 from typing import Any, Dict, List, Tuple
@@ -525,8 +525,8 @@ def validate_inputs(
 
 def run_assessment(customer_data: pd.DataFrame) -> Dict[str, Any]:
     """Engineer features, score the customer, and collect summary metrics."""
-    customer_fe = add_credit_features(customer_data)
-    customer_fe = customer_fe[model_features]
+    all_features = add_credit_features(customer_data)
+    customer_fe = all_features.loc[:, model_features]
 
     numeric_values = (
         customer_fe
@@ -546,15 +546,15 @@ def run_assessment(customer_data: pd.DataFrame) -> Dict[str, Any]:
         "customer_fe": customer_fe,
         "probability": probability,
         "prediction": prediction,
-        "avg_utilization": float(customer_fe["AVG_UTILIZATION"].iloc[0]),
-        "max_utilization": float(customer_fe["MAX_UTILIZATION"].iloc[0]),
-        "avg_delay": float(customer_fe["AVG_DELAY"].iloc[0]),
-        "max_delay": int(customer_fe["MAX_DELAY"].iloc[0]),
-        "delayed_months": int(customer_fe["DELAY_MONTHS"].iloc[0]),
-        "avg_bill": float(customer_fe["AVG_BILL_AMT"].iloc[0]),
-        "avg_payment": float(customer_fe["AVG_PAY_AMT"].iloc[0]),
-        "pay_to_bill": float(customer_fe["PAY_TO_BILL_RATIO"].iloc[0]),
-        "pay_to_limit": float(customer_fe["PAY_TO_LIMIT_RATIO"].iloc[0]),
+        "avg_utilization": float(all_features["AVG_UTILIZATION"].iloc[0]),
+        "max_utilization": float(all_features["MAX_UTILIZATION"].iloc[0]),
+        "avg_delay": float(all_features["AVG_DELAY"].iloc[0]),
+        "max_delay": int(all_features["MAX_DELAY"].iloc[0]),
+        "delayed_months": int(all_features["DELAY_MONTHS"].iloc[0]),
+        "avg_bill": float(all_features["AVG_BILL_AMT"].iloc[0]),
+        "avg_payment": float(all_features["AVG_PAY_AMT"].iloc[0]),
+        "pay_to_bill": float(all_features["PAY_TO_BILL_RATIO"].iloc[0]),
+        "pay_to_limit": float(all_features["PAY_TO_LIMIT_RATIO"].iloc[0]),
     }
 
 

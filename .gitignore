@@ -15,3 +15,12 @@ mlruns/
 *.log
 
 mlflow/
+_local_backups/
+.pytest_cache/
+mlflow_tracking.db*
+mlflow_run_artifacts/
+mlartifacts/
+models/candidates/
+data/
+
+*.bak
